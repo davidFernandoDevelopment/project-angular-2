@@ -1,0 +1,29 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h2>Por pais</h2>
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <app-searcher (onEnter)="search($event)" (onDebounce)="suggest($event)" placeholder="Ingrese un país">
+      </app-searcher>
+    </div>
+  </div>
+</div>
+<ul class="list-group" *ngIf="showSuggested && ngTxtSearch">
+  <li class="list-group-item list-group-item-action" *ngFor="let countrySug of suggestedCountries">
+    <a class="nav-link" [routerLink]="['country',countrySug.cca2]">{{ countrySug.name.common }}</a>
+  </li>
+  <li class="list-group-item list-group-item-action" (click)="searchSuggested(ngTxtSearch)">
+    <a class="nav-link">Buscar "{{ ngTxtSearch }}"</a>
+  </li>
+</ul>
+<hr>
+<div class="row" *ngIf="!hasError; else errorTXT">
+  <div class="col">
+    <app-table [countries]="countries"></app-table>
+  </div>
+</div>
+
+<ng-template #errorTXT>
+  <div class="alert alert-danger">No se encontraron resultados con "{{ ngTxtSearch }}"</div>
+</ng-template>

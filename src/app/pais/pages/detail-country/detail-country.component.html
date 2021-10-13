@@ -1,0 +1,37 @@
+<div *ngIf="!country; else thereCountry" class="alert alert-info">Espere por favor....</div>
+
+<ng-template class="row" #thereCountry>
+  <div class="col-12">
+    <h1>Pais: <small>{{ country.name.official }} ({{ country.name.common }})</small></h1>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <h3>Bandera</h3>
+      <img class="img-thumbnail" [src]="country.flags.svg" [alt]="country.name.common">
+    </div>
+    <div class="col">
+      <h3>Información</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Población: </strong>{{ country.population | number }}
+        </li>
+        <li class="list-group-item">
+          <strong>Capital: </strong>{{ country.capital }}
+        </li>
+        <li class="list-group-item">
+          <strong>Código: </strong>{{ country.cca3 }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <h3>Traducciones</h3>
+  <div class="row">
+    <div class="col">
+      <span class="badge bg-primary mr-1">{{ country.translations.spa.common }}</span>
+      <span class="badge bg-primary mr-1">{{ country.translations.rus.common }}</span>
+      <span class="badge bg-primary mr-1">{{ country.translations.ara.common }}</span>
+      <span class="badge bg-primary mr-1">{{ country.translations.por.common }}</span>
+      <span class="badge bg-primary mr-1">{{ country.translations.swe.common }}</span>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,21 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+  <h2>Por Capital</h2>
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <app-searcher (onEnter)="search($event)" (onDebounce)="suggest($event)" placeholder="Ingrese una capital">
+      </app-searcher>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row" *ngIf="!hasError; else errorTXT">
+  <div class="col">
+    <app-table [countries]="countries"></app-table>
+  </div>
+</div>
+
+<ng-template #errorTXT>
+  <div class="alert alert-danger">No se encontraron resultados con "{{ ngTxtSearch }}"</div>
+</ng-template>
